@@ -1,0 +1,22 @@
+---
+
+modules::
+  default:
+    enable:
+      - lmod
+    roots:
+      lmod: ../../lmod
+    lmod:
+      hide_implicits: true
+      hash_length: 0
+      hierarchy:
+        - mpi
+      verbose: true
+
+      all:
+        autoload: direct
+        conflict:
+          - '{name}'
+        environment:
+          set:
+            '{name}_ROOT': '{PREFIX}'

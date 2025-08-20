@@ -1,0 +1,51 @@
+spack:
+
+  include:
+  - ../main.yaml
+
+  specs:
+  - gcc@15.2.0
+  # - llvm@20.1.8 flang=true
+  - intel-oneapi-compilers@2025.2.0 amd=true nvidia=true
+  - llvm@20.1 +flang
+
+  view: false
+  concretizer:
+    unify: true
+
+  packages:
+    all:
+      require:
+      - target=x86_64
+      - '%c=gcc@11.5.0'
+
+    gcc:
+      externals:
+      - spec: gcc@11.5.0 languages:='c,c++,fortran'
+        prefix: /usr
+        extra_attributes:
+          compilers:
+            c: /usr/bin/gcc
+            cxx: /usr/bin/g++
+            fortran: /usr/bin/gfortran
+          flags: {}
+          environment: {}
+          extra_rpaths: []
+
+    # python:
+    #   buildable: false
+    #   externals:
+    #     - spec: python@3.9.21
+    #       prefix: /usr
+
+    binutils:
+      buildable: false
+      externals:
+      - spec: binutils@2.35.2
+        prefix: /usr
+
+  modules:
+    default:
+      lmod:
+        core_compilers:
+        - gcc@=11.5.0

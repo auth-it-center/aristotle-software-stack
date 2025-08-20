@@ -5,3 +5,4 @@ site
 lmod
 spack.lock
 .spack-env
+load_site.sh

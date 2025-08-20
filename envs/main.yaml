@@ -1,0 +1,9 @@
+---
+
+compilers:: []
+
+include:
+  - ./common/config.yaml
+  - ./common/concretizer.yaml
+  - ./common/modules.yaml
+  - ./common/packages.yaml

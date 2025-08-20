@@ -1,0 +1,44 @@
+---
+
+packages::
+
+  all:
+    permissions:
+      group: scc
+      write: group
+
+  curl:
+    variants: +libssh2 +libidn2 libs=shared,static # tls=mbedtls,openssl
+
+  # libssh2:
+  #   variants: crypto=mbedtls
+
+  openmpi:
+    variants: schedulers=slurm +pmi +legacylaunchers fabrics=ucx
+
+  mvapich2:
+    variants: process_managers=slurm
+
+  ucx:
+    variants: +dc +ib_hw_tm +mlx5_dv +verbs +ud +rc +rdmacm +dm +thread_multiple
+
+  python:
+    variants: +tkinter +libxml2 +lzma +sqlite3
+
+  rdma-core:
+    variants: build_type=MinSizeRel
+
+  qt:
+    variants: -opengl
+
+  r:
+    variants: +X
+
+  zlib:
+    require: 'zlib-ng'
+
+  slurm:
+    buildable: false
+    externals:
+      - prefix: /usr
+        spec: slurm@24.11.5 restd=true pmix=true pam=true mariadb=true hwloc=true hdf5=true cgroup=true

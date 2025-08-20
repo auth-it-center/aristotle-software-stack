@@ -1,0 +1,9 @@
+---
+
+concretizer:
+  unify: true
+  reuse: dependencies
+  duplicates:
+    strategy: minimal
+    max_dupes:
+      default: 2
