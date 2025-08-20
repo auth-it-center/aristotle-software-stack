@@ -1,0 +1,7 @@
+spack
+spack-v*
+cache
+site
+lmod
+spack.lock
+.spack-env
