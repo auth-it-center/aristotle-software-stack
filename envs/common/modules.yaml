@@ -7,12 +7,29 @@ modules::
     roots:
       lmod: ../../lmod
     lmod:
-      hide_implicits: true
+
+      # General Lmod modulefile configs
       hash_length: 0
+      hide_implicits: true
       hierarchy:
         - mpi
       verbose: true
 
+      # Set rocky9 platform compiler as core
+      core_compilers:
+        - gcc@=11.5.0
+      # Exclude packages from platform compiler
+      # from generating modulefiles, except for
+      # compilers
+      exclude:
+        - '%gcc@11.5.0'
+        - gcc@11.5.0
+      include:
+        - gcc@15
+        - llvm
+        - intel-oneapi-compilers
+
+      # Package specific configs
       all:
         autoload: direct
         conflict:
@@ -20,3 +37,38 @@ modules::
         environment:
           set:
             '{name}_ROOT': '{PREFIX}'
+
+      ucx:
+        environment:
+          unset:
+            - UCX_ROOT
+
+  # Inspect the following subdirs in the prefix
+  # If they exist add them to the specified variables
+  prefix_inspections:
+    # Default prefix inspections from
+    # ./spack/etc/spack/defaults/modules.yaml
+    ./bin:
+      - PATH
+    ./man:
+      - MANPATH
+    ./share/man:
+      - MANPATH
+    ./share/aclocal:
+      - ACLOCAL_PATH
+    ./lib/pkgconfig:
+      - PKG_CONFIG_PATH
+    ./lib64/pkgconfig:
+      - PKG_CONFIG_PATH
+    ./share/pkgconfig:
+      - PKG_CONFIG_PATH
+    ./:
+      - CMAKE_PREFIX_PATH
+
+    # Additional custom prefix inspections
+    ./include:
+      - CPATH
+    ./lib64:
+      - LD_LIBRARY_PATH
+    ./lib:
+      - LD_LIBRARY_PATH

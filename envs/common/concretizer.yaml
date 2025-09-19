@@ -1,9 +1,11 @@
 ---
 
 concretizer:
-  unify: true
+  unify: when_possible
   reuse: dependencies
+  targets:
+    granularity: generic
   duplicates:
     strategy: minimal
     max_dupes:
-      default: 2
+      default: 1
