@@ -1,0 +1,43 @@
+# This is a Spack Environment file.
+#
+# It describes a set of packages to be installed, along with
+# configuration settings.
+spack:
+
+  include:
+  - ../main.yaml
+
+  # add package specs to the `specs` list
+  specs:
+  - ucx +dc +ib_hw_tm +mlx5_dv +verbs +ud +rc +rdmacm +dm +thread_multiple
+  - openmpi@5
+  - netcdf-c
+  - netcdf-fortran
+  - libnsl
+
+  view: false
+
+  concretizer:
+    unify: true
+
+  packages:
+
+    all:
+      require:
+      - target=x86_64
+      - '%[when=%c]c=oneapi@2025.2.0'
+      - '%[when=%mpi]openmpi'
+
+    intel-oneapi-compilers:
+      externals:
+      - spec: intel-oneapi-compilers@2025.2.0 +amd +nvidia
+        prefix: /mnt/apps/aristotle/aristotle-software-stack/site/linux-x86_64/none-none/intel-oneapi-compilers-2025.2.0-o7tujeuvcigvrtkbgn4dib6gc6273zfd
+        extra_attributes:
+          compilers:
+            c: /mnt/apps/aristotle/aristotle-software-stack/site/linux-x86_64/none-none/intel-oneapi-compilers-2025.2.0-o7tujeuvcigvrtkbgn4dib6gc6273zfd/compiler/2025.2/bin/icx
+            cxx: /mnt/apps/aristotle/aristotle-software-stack/site/linux-x86_64/none-none/intel-oneapi-compilers-2025.2.0-o7tujeuvcigvrtkbgn4dib6gc6273zfd/compiler/2025.2/bin/icpx
+            fortran: /mnt/apps/aristotle/aristotle-software-stack/site/linux-x86_64/none-none/intel-oneapi-compilers-2025.2.0-o7tujeuvcigvrtkbgn4dib6gc6273zfd/compiler/2025.2/bin/ifx
+
+    intel-oneapi-runtime:
+      require:
+      - ^gcc-runtime@11

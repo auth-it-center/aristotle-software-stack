@@ -23,10 +23,10 @@ packages::
     variants: +dc +ib_hw_tm +mlx5_dv +verbs +ud +rc +rdmacm +dm +thread_multiple
 
   python:
-    variants: +tkinter +libxml2 +lzma +sqlite3
+    variants: +libxml2 +lzma +sqlite3
 
   rdma-core:
-    variants: build_type=MinSizeRel
+    variants: build_type=MinSizeRel -man_pages
 
   qt:
     variants: -opengl

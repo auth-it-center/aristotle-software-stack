@@ -7,3 +7,4 @@ include:
   - ./common/concretizer.yaml
   - ./common/modules.yaml
   - ./common/packages.yaml
+  - ./common/repos.yaml

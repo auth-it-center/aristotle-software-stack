@@ -6,12 +6,12 @@ spack:
   specs:
   - gcc@15.2.0
   # - llvm@20.1.8 flang=true
-  - intel-oneapi-compilers@2025.2.0 amd=true nvidia=true
+  - intel-oneapi-compilers@2025.2.0 amd=true nvidia=true ^gcc@11
   - llvm@20.1 +flang
 
   view: false
   concretizer:
-    unify: true
+    unify: when_possible
 
   packages:
     all:
@@ -32,20 +32,8 @@ spack:
           environment: {}
           extra_rpaths: []
 
-    # python:
-    #   buildable: false
-    #   externals:
-    #     - spec: python@3.9.21
-    #       prefix: /usr
-
     binutils:
       buildable: false
       externals:
       - spec: binutils@2.35.2
         prefix: /usr
-
-  modules:
-    default:
-      lmod:
-        core_compilers:
-        - gcc@=11.5.0
