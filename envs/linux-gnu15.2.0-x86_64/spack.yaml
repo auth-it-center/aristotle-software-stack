@@ -14,6 +14,8 @@ spack:
   - python
   - ucx
   - openmpi
+  - osu-micro-benchmarks
+  - hpcg
   # - openblas
   # - meson
   # - ninja
