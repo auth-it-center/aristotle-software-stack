@@ -1,0 +1,70 @@
+spack:
+
+  include:
+  - ../main.yaml
+
+  specs:
+  - automake
+  - gmake
+  - perl
+  - curl
+  - cmake
+  - git
+  - openjdk
+  - python
+  - ucx
+  - openmpi
+  # - openblas
+  # - meson
+  # - ninja
+  # - qt
+  # - r
+  # - mvapich
+  # - wrf
+  # - wps
+
+  view: false
+
+  packages:
+    all:
+      require:
+      - target=x86_64
+      - '%[when=%c]c=gcc@15.2.0'
+      - '%[when=%cxx]cxx=gcc@15.2.0'
+    pkg-config:
+      require:
+      - cflags=-std=gnu17
+      - target=x86_64
+    ncurses:
+      require:
+      - cflags=-std=gnu17
+    gdbm:
+      require:
+      - cflags=-std=gnu17
+    # ucx:
+    #   require:
+    #   - cflags=-std=gnu17
+    libx11:
+    #   buildable: false
+      externals:
+      - spec: libx11@1.7.0
+        prefix: /usr
+    # libxcb:
+    #   buildable: false
+    #   externals:
+    #     - spec: libxcb@1.13.1
+    #       prefix: /usr
+
+    gcc:
+      buildable: false
+      externals:
+      - spec: gcc@15.2.0 languages:='c,c++,fortran'
+        prefix: /mnt/apps/aristotle/aristotle-software-stack/site/linux-x86_64/gcc-11.5.0/gcc-15.2.0-hqplqfbjihp6pxml5gulr435ng6uu4nq
+        extra_attributes:
+          compilers:
+            c: /mnt/apps/aristotle/aristotle-software-stack/site/linux-x86_64/gcc-11.5.0/gcc-15.2.0-hqplqfbjihp6pxml5gulr435ng6uu4nq/bin/gcc
+            cxx: /mnt/apps/aristotle/aristotle-software-stack/site/linux-x86_64/gcc-11.5.0/gcc-15.2.0-hqplqfbjihp6pxml5gulr435ng6uu4nq/bin/g++
+            fortran: /mnt/apps/aristotle/aristotle-software-stack/site/linux-x86_64/gcc-11.5.0/gcc-15.2.0-hqplqfbjihp6pxml5gulr435ng6uu4nq/bin/gfortran
+          flags: {}
+          environment: {}
+          extra_rpaths: []

@@ -1,0 +1,32 @@
+spack:
+
+  include:
+  - ../main.yaml
+
+  specs: []
+  view: false
+
+  concretizer:
+    unify: false
+
+  packages:
+    all:
+      require:
+      - target=x86_64
+      prefer:
+      - '%c=clang@20.1.6'
+      - '%cxx=clang@20.1.6'
+
+    llvm:
+      buildable: false
+      externals:
+      - spec: llvm@20.1.6 +flang
+        prefix: /mnt/apps/aristotle/aristotle-software-stack/site/linux-x86_64/gcc-11.5.0/llvm-20.1.6-y3qurhvstfpeyyquebmw5rjnm6mu4h57
+        extra_attributes:
+          compilers:
+            c: /mnt/apps/aristotle/aristotle-software-stack/site/linux-x86_64/gcc-11.5.0/llvm-20.1.6-y3qurhvstfpeyyquebmw5rjnm6mu4h57/bin/clang
+            cxx: /mnt/apps/aristotle/aristotle-software-stack/site/linux-x86_64/gcc-11.5.0/llvm-20.1.6-y3qurhvstfpeyyquebmw5rjnm6mu4h57/bin/clang++
+            fortran: /mnt/apps/aristotle/aristotle-software-stack/site/linux-x86_64/gcc-11.5.0/llvm-20.1.6-y3qurhvstfpeyyquebmw5rjnm6mu4h57/bin/flang
+          flags: {}
+          environment: {}
+          extra_rpaths: []
