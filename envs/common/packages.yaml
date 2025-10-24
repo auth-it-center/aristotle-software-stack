@@ -14,6 +14,13 @@ packages::
   # libssh2:
   #   variants: crypto=mbedtls
 
+  opengl:
+    buildable: False
+    externals:
+      - spec: opengl@4.5.0
+        prefix: /usr
+
+
   openmpi:
     variants: schedulers=slurm +pmi +legacylaunchers fabrics=ucx
 

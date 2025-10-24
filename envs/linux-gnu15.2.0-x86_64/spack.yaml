@@ -16,14 +16,8 @@ spack:
   - openmpi
   - osu-micro-benchmarks
   - hpcg
-  # - openblas
-  # - meson
-  # - ninja
-  # - qt
-  # - r
-  # - mvapich
-  # - wrf
-  # - wps
+  - ninja
+  - qt +opengl
 
   view: false
 
@@ -43,19 +37,12 @@ spack:
     gdbm:
       require:
       - cflags=-std=gnu17
-    # ucx:
-    #   require:
-    #   - cflags=-std=gnu17
-    libx11:
-    #   buildable: false
-      externals:
-      - spec: libx11@1.7.0
-        prefix: /usr
-    # libxcb:
-    #   buildable: false
-    #   externals:
-    #     - spec: libxcb@1.13.1
-    #       prefix: /usr
+    libsm:
+      require:
+      - ^util-linux-uuid
+    cairo:
+      require:
+      - cflags=-std=gnu17
 
     gcc:
       buildable: false

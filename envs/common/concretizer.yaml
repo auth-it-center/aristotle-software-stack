@@ -2,7 +2,7 @@
 
 concretizer:
   unify: when_possible
-  reuse: dependencies
+  reuse: true
   targets:
     granularity: generic
   duplicates:

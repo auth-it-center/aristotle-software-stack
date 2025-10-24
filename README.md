@@ -113,10 +113,17 @@ spack -e ./envs/{{ environment_name }} config blame modules
 
 #### Concretize environment
 
+Concretization is the process of solving an environment based on the declared specification in order to produce the exact versions and variants of each package that will be eventually installed in the environment. The product of the concretization process is stored in a JSON file inside the environment called a lockfile, because it describes which versions are locked for each package.
+
+The concretization process needs to be done every time the current solution is outdated. This could be either because a root spec (one that's explicitly requrested by the user) has changed, or because we are not happy with the current concretization, e.g. because a specific variant causes a build failure.
+
+Tips:
+* Use `--force` but not `--fresh` if you have changed variants or other properties of dependencies and spack refuses to concretize without any option
+
 ```console
-# spack -e ./envs/{{ environment_name }} concretize -Uf -j32
+# spack -e ./envs/{{ environment_name }} concretize -j32
 # # ... or ...
-# srun -p {{ partition }} -c {{ ncpus }} --pty spack -e ./envs/{{ environment_name }} concretize -Uf -j {{ ncpus }}
+# srun -p {{ partition }} -c {{ ncpus }} --pty spack -e ./envs/{{ environment_name }} concretize -j {{ ncpus }}
 ```
 
 #### Install packages
@@ -124,5 +131,5 @@ spack -e ./envs/{{ environment_name }} config blame modules
 ```console
 # spack -e ./envs/{{ environment_name }} install -j32
 # # ... or ...
-# srun -p {{ partition }} -c {{ ncpus }} --pty spack -e ./envs/gcc-15.2.0 install -Uf -j {{ ncpus }}
+# srun -p {{ partition }} -c {{ ncpus }} --pty spack -e ./envs/gcc-15.2.0 install -j{{ ncpus }}
 ```
