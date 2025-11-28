@@ -1,0 +1,47 @@
+spack:
+
+  include:
+  - ../main.yaml
+
+  specs:
+  - openmpi
+  - hpcg
+  - quantum-espresso 
+  view: false
+
+  packages:
+    all:
+      require:
+      - target=aarch64
+      - '%[when=%c]c=gcc@15.2.0'
+      - '%[when=%cxx]cxx=gcc@15.2.0'
+    pkg-config:
+      require:
+      - cflags=-std=gnu17
+      - target=aarch64
+    ncurses:
+      require:
+      - cflags=-std=gnu17
+    gdbm:
+      require:
+      - cflags=-std=gnu17
+    libsm:
+      require:
+      - ^util-linux-uuid
+    cairo:
+      require:
+      - cflags=-std=gnu17
+
+    gcc:
+      buildable: false
+      externals:
+      - spec: gcc@15.2.0 languages:='c,c++,fortran'
+        prefix: /mnt/apps/aristotle/aristotle-software-stack/site/linux-armv8.2a/gcc-11.5.0/gcc-15.2.0-4xwy3ahqpyfn2rip3fytdydo7ba3673o
+        extra_attributes:
+          compilers:
+            c: /mnt/apps/aristotle/aristotle-software-stack/site/linux-armv8.2a/gcc-11.5.0/gcc-15.2.0-4xwy3ahqpyfn2rip3fytdydo7ba3673o/bin/gcc
+            cxx: /mnt/apps/aristotle/aristotle-software-stack/site/linux-armv8.2a/gcc-11.5.0/gcc-15.2.0-4xwy3ahqpyfn2rip3fytdydo7ba3673o/bin/g++
+            fortran: /mnt/apps/aristotle/aristotle-software-stack/site/linux-armv8.2a/gcc-11.5.0/gcc-15.2.0-4xwy3ahqpyfn2rip3fytdydo7ba3673o/bin/gfortran
+          flags: {}
+          environment: {}
+          extra_rpaths: []

@@ -1,0 +1,21 @@
+spack:
+
+  include:
+  - ../main.yaml
+
+  specs:
+  - gcc@15.2.0
+  view: false
+  concretizer:
+    unify: true
+
+  packages:
+    gcc:
+      externals:
+      - spec: gcc@11.5.0 languages:='c,c++,fortran'
+        prefix: /usr
+        extra_attributes:
+          compilers:
+            c: /usr/bin/gcc
+            cxx: /usr/bin/g++
+            fortran: /usr/bin/gfortran

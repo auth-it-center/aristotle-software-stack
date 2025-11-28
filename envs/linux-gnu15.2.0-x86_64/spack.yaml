@@ -18,10 +18,25 @@ spack:
   - hpcg
   - ninja
   - qt +opengl
-
+  - netlib-scalapack
+  - fftw
+  - openblas
+  - quantum-espresso
+  - beast2
+  - gsl
+  - boost
   view: false
 
   packages:
+    gcc:
+      externals:
+      - spec: gcc@15.2.0 languages='c,cxx,fortran' /hqplqfb
+        prefix: /mnt/apps/aristotle/aristotle-software-stack/site/linux-x86_64/gcc-11.5.0/gcc-15.2.0-hqplqfbjihp6pxml5gulr435ng6uu4nq
+        extra_attributes:
+          compilers:
+            c: /mnt/apps/aristotle/aristotle-software-stack/site/linux-x86_64/gcc-11.5.0/gcc-15.2.0-hqplqfbjihp6pxml5gulr435ng6uu4nq/bin/gcc
+            cxx: /mnt/apps/aristotle/aristotle-software-stack/site/linux-x86_64/gcc-11.5.0/gcc-15.2.0-hqplqfbjihp6pxml5gulr435ng6uu4nq/bin/g++
+            fortran: /mnt/apps/aristotle/aristotle-software-stack/site/linux-x86_64/gcc-11.5.0/gcc-15.2.0-hqplqfbjihp6pxml5gulr435ng6uu4nq/bin/gfortran
     all:
       require:
       - target=x86_64
@@ -44,16 +59,3 @@ spack:
       require:
       - cflags=-std=gnu17
 
-    gcc:
-      buildable: false
-      externals:
-      - spec: gcc@15.2.0 languages:='c,c++,fortran'
-        prefix: /mnt/apps/aristotle/aristotle-software-stack/site/linux-x86_64/gcc-11.5.0/gcc-15.2.0-hqplqfbjihp6pxml5gulr435ng6uu4nq
-        extra_attributes:
-          compilers:
-            c: /mnt/apps/aristotle/aristotle-software-stack/site/linux-x86_64/gcc-11.5.0/gcc-15.2.0-hqplqfbjihp6pxml5gulr435ng6uu4nq/bin/gcc
-            cxx: /mnt/apps/aristotle/aristotle-software-stack/site/linux-x86_64/gcc-11.5.0/gcc-15.2.0-hqplqfbjihp6pxml5gulr435ng6uu4nq/bin/g++
-            fortran: /mnt/apps/aristotle/aristotle-software-stack/site/linux-x86_64/gcc-11.5.0/gcc-15.2.0-hqplqfbjihp6pxml5gulr435ng6uu4nq/bin/gfortran
-          flags: {}
-          environment: {}
-          extra_rpaths: []
